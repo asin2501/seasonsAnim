@@ -1,0 +1,115 @@
+$hill-width: 200px;
+$hill-height: 100px;
+$hill-color: #6D9A6D;
+$hill-color-red: #A59358;
+$hill-color-white: #fff;
+$hill-color-brown: #56514E;
+$hill-color-light-green: #5CA75A;
+
+.hill {
+    position: absolute;
+    bottom: -$hill-height / 2 - 25px;
+    right: 20px;
+    z-index: 63;
+    display: block;
+    width: 200px;
+    height: 100px;
+    background-color: $hill-color;
+
+    @include border-radius(50%);
+
+    @include transition-duration(0.7s);
+
+    @include transition-delay(0.3s);
+
+    @include transition-property(transform, background-color);
+
+    &.normal-delay {
+        @include transition-delay(0.2s !important);
+    }
+
+    &.red {
+        background-color: $hill-color-red;
+
+        @include transition-duration(3.5s);
+
+        @include transition-delay(2s);
+
+        &:nth-child(2) {
+            background-color: mix($hill-color-red, $gray-sky-color, 85%);
+        }
+
+        &:nth-child(3) {
+            background-color: mix($hill-color-red, $gray-sky-color, 70%);
+        }
+    }
+
+    &.white {
+        background-color: $hill-color-white;
+
+        @include transition-duration(3.5s);
+
+        @include transition-delay(2s);
+
+        &:nth-child(2) {
+            background-color: mix($hill-color-white, $gray-sky-color, 80%);
+        }
+
+        &:nth-child(3) {
+            background-color: mix($hill-color-white, $gray-sky-color, 60%);
+        }
+    }
+
+    &.brown {
+        background-color: $hill-color-brown;
+
+        &:nth-child(2) {
+            background-color: mix($hill-color-brown, $gray-sky-color, 80%);
+        }
+
+        &:nth-child(3) {
+            background-color: mix($hill-color-brown, $gray-sky-color, 60%);
+        }
+    }
+
+    &.light-green {
+        background-color: $hill-color-light-green;
+
+        &:nth-child(2) {
+            background-color: mix($hill-color-light-green, $gray-sky-color, 80%);
+        }
+
+        &:nth-child(3) {
+            background-color: mix($hill-color-light-green, $gray-sky-color, 60%);
+        }
+    }
+
+    &.hidden {
+        transform: translateY(100px);
+    }
+
+    &:nth-child(2) {
+        right: -70px;
+        bottom: -$hill-height / 2 + 5px;
+        z-index: 62;
+        background-color: #7FAB7F;
+
+        @include transition-delay(0.6s);
+
+        &.hidden {
+            transform: translateX(200px);
+        }
+    }
+
+    &:nth-child(3) {
+        right: 75px;
+        bottom: -125px;
+        z-index: 61;
+        height: 200px;
+        background-color: #8DB58D;
+
+        &.hidden {
+            transform: translateX(-200px);
+        }
+    }
+}

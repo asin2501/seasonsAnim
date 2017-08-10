@@ -1,0 +1,197 @@
+.snow-layout {
+    transform: translateZ(0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 200;
+    display: none;
+    opacity: 1;
+    background-color: rgba(216, 209, 209, 0.15);
+
+    @include transition-duration(4s);
+
+    @include transition-property(opacity);
+
+    &.hidden {
+        opacity: 0;
+    }
+
+    .snow {
+        position: absolute;
+        display: block;
+        top: -100px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        span {
+            position: absolute;
+            top: -20px;
+            display: block;
+            width: 7px;
+            height: 7px;
+            border-radius: 10px;
+            background-color: #FFF;
+            color: #fff;
+
+            @include animate(left-right, 3s, 0, infinite, forwards, ease-in);
+
+            &:nth-child(1) {
+                @include animate(snow-fall, 3s);
+
+                left: 10px;
+            }
+
+            &:nth-child(2) {
+                @include animate(snow-fall, 5s);
+
+                left: 30px;
+            }
+
+            &:nth-child(3) {
+                @include animate(snow-fall, 4s);
+
+                left: 50px;
+            }
+
+            &:nth-child(4) {
+                @include animate(snow-fall, 3.5s);
+
+                left: 70px;
+            }
+
+            &:nth-child(5) {
+                @include animate(snow-fall, 3.2s);
+
+                left: 90px;
+            }
+
+            &:nth-child(6) {
+                @include animate(snow-fall, 3.1s);
+
+                left: 110px;
+            }
+
+            &:nth-child(7) {
+                @include animate(snow-fall, 4.7s);
+
+                left: 120px;
+            }
+
+            &:nth-child(8) {
+                @include animate(snow-fall, 3.5s);
+
+                left: 150px;
+            }
+
+            &:nth-child(9) {
+                @include animate(snow-fall, 3.8s);
+
+                left: 180px;
+            }
+
+            &:nth-child(10) {
+                @include animate(snow-fall, 3.3s);
+
+                left: 190px;
+            }
+        }
+
+        &:nth-child(2) {
+            @include animate(left-right, 3s, 0.4s, infinite, forwards, ease-in);
+
+            span {
+                width: 6px;
+                height: 6px;
+                -webkit-animation-delay: 0.4s !important;
+                animation-delay: 0.4s !important;
+            }
+        }
+
+        &:nth-child(3) {
+            @include animate(left-right, 3s, 0.7s, infinite, forwards, ease-in);
+
+            span {
+                width: 5px;
+                height: 5px;
+                -webkit-animation-delay: 1s !important;
+                animation-delay: 1s !important;
+            }
+        }
+
+        &:nth-child(4) {
+            @include animate(left-right, 3s, 0.9s, infinite, forwards, ease-in);
+
+            span {
+                width: 9px;
+                height: 9px;
+                -webkit-animation-delay: 1.5s !important;
+                animation-delay: 1.5s !important;
+                opacity: 0.8;
+            }
+        }
+
+        &:nth-child(5) {
+            @include animate(left-right, 1.5s, 0.7s, infinite, forwards, ease-in);
+
+            span {
+                width: 5px;
+                height: 5px;
+                -webkit-animation-delay: 1.8s !important;
+                animation-delay: 1.8s !important;
+                opacity: 0.6;
+            }
+        }
+
+        &:nth-child(6) {
+            @include animate(left-right, 1.5s, 0.9s, infinite, forwards, ease-in);
+
+            span {
+                width: 5px;
+                height: 5px;
+                -webkit-animation-delay: 2.1s !important;
+                animation-delay: 2.1s !important;
+                opacity: 0.6;
+            }
+        }
+
+        &:nth-child(7) {
+            @include animate(left-right, 2s, 0.1s, infinite, forwards, ease-in);
+
+            span {
+                width: 8px;
+                height: 8px;
+                -webkit-animation-delay: 0.2s !important;
+                animation-delay: 0.2s !important;
+                opacity: 0.4;
+            }
+        }
+    }
+}
+
+@include keyframes(snow-fall) {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(600px);
+    }
+}
+
+
+@include keyframes(left-right) {
+    0% {
+        transform: translateX(-30px);
+    }
+
+    50% {
+        transform: translateX(30px);
+    }
+
+    100% {
+        transform: translateX(-30px);
+    }
+}

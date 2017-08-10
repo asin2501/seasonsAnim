@@ -1,0 +1,181 @@
+$cloud-width: 70px;
+$cloud-height: 18px;
+$cloud-before-radius: 30px;
+$cloud-after-radius: 20px;
+
+$cloud-color: #fff;
+$dark-cloud-color: #6589A0;
+
+.cloud {
+    position: absolute;
+    top: 60px;
+    z-index: 80;
+    display: block;
+    width: $cloud-width;
+    height: $cloud-height;
+    border-radius: 100px;
+    background-color: $cloud-color;
+    transform: translateX(-$cloud-width - 5);
+
+    @include transition-duration(4.5s);
+
+    @include transition-property(background-color);
+
+    &::before {
+        content: '';
+        position: relative;
+        display: block;
+        top: -$cloud-before-radius / 2;
+        left: $cloud-before-radius / 2 - 2px;
+        height: $cloud-before-radius;
+        width: $cloud-before-radius;
+        border-radius: 100px;
+        background-color: inherit;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: relative;
+        top: -$cloud-before-radius - $cloud-after-radius / 2;
+        left: $cloud-before-radius + $cloud-after-radius / 2;
+        height: $cloud-after-radius;
+        width: $cloud-after-radius;
+        border-radius: 100px;
+        background-color: inherit;
+    }
+
+    &.middle {
+        width: $cloud-width * 1.5;
+        height: $cloud-height * 1.5;
+        transform: translateX(-($cloud-width * 1.5) - 5);
+
+        &::before {
+            top: -18px;
+            left: 18px;
+            width: $cloud-before-radius * 1.5;
+            height: $cloud-before-radius * 1.5;
+        }
+
+        &::after {
+            top: -56px;
+            left: 58px;
+            width: $cloud-after-radius * 1.5;
+            height: $cloud-after-radius * 1.5;
+        }
+    }
+
+    &.large {
+        z-index: 79;
+        width: $cloud-width * 2;
+        height: $cloud-height * 2;
+        transform: translateX(-($cloud-width * 2) - 5);
+
+        &::before {
+            top: -25px;
+            left: 57px;
+            width: $cloud-before-radius * 2;
+            height: $cloud-before-radius * 2;
+        }
+
+        &::after {
+            top: -77px;
+            left: 25px;
+            width: $cloud-after-radius * 2;
+            height: $cloud-after-radius * 2;
+        }
+    }
+
+    &:nth-child(2) {
+        top: 30px;
+
+        @include animate(clouds-move-left-to-right, 6s, 2s);
+    }
+
+    &:nth-child(4) {
+        top: 80px;
+        background-color: mix($cloud-color, $blue-sky-color, 85%);
+
+        @include animate(clouds-move-left-to-right, 7s, 5s);
+    }
+
+    &:nth-child(1) {
+        @extend .middle;
+
+        background-color: mix($cloud-color, $blue-sky-color, 70%);
+
+        @include animate(clouds-move-left-to-right, 7s);
+    }
+
+    &:nth-child(3) {
+        @extend .middle;
+
+        top: 40px;
+        background-color: mix($cloud-color, $blue-sky-color, 50%);
+
+        @include animate(clouds-move-left-to-right, 10s, 1s);
+    }
+
+    &:nth-child(5) {
+        @extend .large;
+
+        top: 70px;
+        background-color: mix($cloud-color, $blue-sky-color, 35%);
+
+        @include animate(clouds-move-left-to-right, 14s);
+    }
+
+    &:nth-child(6) {
+        @extend .large;
+
+        background-color: mix($cloud-color, $blue-sky-color, 45%);
+
+        @include animate(clouds-move-left-to-right, 12s, 2s);
+    }
+
+    &:nth-child(7) {
+        @extend .middle;
+
+        background-color: mix($cloud-color, $blue-sky-color, 65%);
+
+        @include animate(clouds-move-left-to-right, 16s, 1s);
+    }
+
+    &:nth-child(8) {
+        background-color: mix($cloud-color, $blue-sky-color, 65%);
+
+        @include animate(clouds-move-left-to-right, 16s, 1s);
+    }
+
+    &:nth-child(9) {
+        @extend .middle;
+
+        background-color: mix($cloud-color, $blue-sky-color, 45%);
+
+        @include animate(clouds-move-left-to-right, 11s, 1s);
+    }
+
+    &:nth-child(10) {
+        background-color: mix($cloud-color, $blue-sky-color, 95%);
+
+        @include animate(clouds-move-left-to-right, 13s, 4s);
+    }
+
+    &:nth-child(11) {
+        @extend .large;
+
+        background-color: mix($cloud-color, $blue-sky-color, 85%);
+
+        @include animate(clouds-move-left-to-right, 11s, 5s);
+    }
+}
+
+@include keyframes(clouds-move-left-to-right) {
+    0% {
+        transform: translateX(-$cloud-width * 2 - 5);
+    }
+
+    100% {
+        transform: translateX($cloud-width * 2 + 200);
+    }
+}

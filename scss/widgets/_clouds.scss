@@ -1,0 +1,47 @@
+.clouds {
+    transform: translateZ(0);
+    z-index: 90;
+
+    @include transition-property(transform);
+
+    @include transition-duration(2s);
+
+    .cloud:nth-child(4) ~ .cloud {
+        display: none;
+    }
+
+    &.snow-clouds {
+        position: relative;
+        transform: translateY(-40px) translateZ(0);
+
+        .cloud:nth-child(4) ~ .cloud {
+            display: block;
+        }
+    }
+
+    &.rain-clouds {
+        position: relative;
+        transform: translateY(-20px) translateZ(0);
+
+        .cloud:nth-child(1), .cloud:nth-child(2) {
+            background-color: $dark-cloud-color;
+        }
+
+        .cloud:nth-child(2) ~ .cloud {
+            background-color: mix($dark-cloud-color, $gray-sky-color, 85%);
+        }
+
+        .cloud:nth-child(4) ~ .cloud {
+            display: block;
+            background-color: mix($dark-cloud-color, $gray-sky-color, 70%);
+        }
+
+        .cloud:nth-child(7) ~ .cloud {
+            background-color: mix($dark-cloud-color, $gray-sky-color, 55%);
+        }
+
+        cloud:nth-child(9) ~ .cloud {
+            background-color: mix($dark-cloud-color, $gray-sky-color, 30%);
+        }
+    }
+}

@@ -1,0 +1,221 @@
+$tree-width: 65px;
+$tree-height: 10px;
+$tree-wood-width: 8px;
+$tree-wood-height: 80px;
+
+$tree-circle-color: #4A8E64;
+$tree-circle-color-red: #A96131;
+$tree-wood-color: #7D4747;
+$tree-head-transform: scaleX(0.7) scaleY(3.3);
+
+.tree {
+    position: absolute;
+    bottom: 0;
+    z-index: 63;
+    transform-origin: 50% 80%;
+
+    &.non-head {
+        .head {
+            opacity: 0;
+        }
+    }
+
+    .head {
+        position: relative;
+        z-index: 10;
+        display: block;
+        width: $tree-width;
+        height: $tree-height;
+        padding-top: $tree-height;
+        border-radius: $tree-width;
+        background-color: #4A9065;
+        transform: $tree-head-transform;
+
+        @include transition-property(background-color, transform, opacity);
+
+        @include transition-duration(3.5s);
+
+        @include transition-delay(2s);
+
+        &::before {
+            content: '';
+            position: relative;
+            float: left;
+            display: block;
+            width: 25px;
+            height: 25px;
+            left: 10px;
+            top: -20px;
+            border-radius: $tree-width;
+            background-color: inherit;
+        }
+
+        &::after {
+            content: '';
+            position: relative;
+            float: right;
+            display: block;
+            width: 35px;
+            height: 35px;
+            left: -10px;
+            top: -30px;
+            border-radius: $tree-width;
+            background-color: inherit;
+        }
+    }
+
+    &.red {
+        .head {
+            background-color: $tree-circle-color-red;
+        }
+    }
+
+    transform: translateY(250px);
+
+    &.showing {
+        @include animate(show-tree, 1.5s, 0.5s, 1);
+    }
+
+    &.showed {
+        transform: translateY(0);
+    }
+
+    //border: 3px dashed #B1DEFD;
+
+    .wood {
+        position: relative;
+        top: 5px;
+        margin-left: ($tree-width - $tree-wood-width) / 2;
+        content: "";
+        display: block;
+        width: $tree-wood-width;
+        height: $tree-wood-height;
+        background-color: $tree-wood-color;
+
+        .branch {
+            position: relative;
+            display: block;
+            top: -11px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 3.5px 0 3.5px 20px;
+            border-color: transparent transparent transparent $tree-wood-color;
+            transform: rotate(-30deg);
+
+            &:nth-child(2) {
+                top: -19px;
+                left: -11px;
+                transform: rotate(244deg);
+            }
+        }
+
+        &::before {
+            content: '';
+            position: relative;
+            display: block;
+            width: 0;
+            height: 0;
+            top: 7px;
+            margin-left: -22px;
+            border-style: solid;
+            border-width: 3px 0 3px 32px;
+            border-color: transparent transparent transparent $tree-wood-color;
+            transform: rotate(-127deg);
+
+            @include transition-duration(2s);
+
+            @include transition-delay(1s);
+
+            @include transition-property(opacity);
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 3px 0 3px 28px;
+            border-color: transparent transparent transparent $tree-wood-color;
+            transform: rotate(-50deg);
+
+            @include transition-duration(2s);
+
+            @include transition-delay(1s);
+
+            @include transition-property(opacity);
+        }
+    }
+
+    &:nth-child(1) {
+        //bottom: 0;
+        right: 40%;
+    }
+
+    &:nth-child(2), &:nth-child(3) {
+        //bottom: 0;
+        right: 10%;
+        z-index: 62;
+
+        .head {
+            width: $tree-width * 0.7;
+            height: $tree-height * 0.8;
+            padding-top: $tree-height / 2 * 0.7;
+            border-radius: $tree-width * 2;
+            background-color: #58AB78;
+            transform: $tree-head-transform;
+
+            &::before {
+                width: 22px;
+                height: 22px;
+                left: 5px;
+                top: -15px;
+            }
+
+            &::after {
+                width: 20px;
+                height: 20px;
+                left: -10px;
+                top: -12px;
+            }
+        }
+
+        &.red {
+            .head {
+                background-color: mix($tree-circle-color-red, $gray-sky-color, 85%);
+            }
+        }
+
+        .wood {
+            //width: $tree-wood-width * 0.7;
+            top: -8px;
+            margin-left: ($tree-width * 0.7 - $tree-wood-width) / 2;
+
+            &::after {
+                position: relative;
+                left: -1px;
+            }
+        }
+
+        transform-origin: 50% 30%;
+    }
+
+    &:nth-child(3) {
+        right: auto;
+        bottom: 30px;
+        left: 1%;
+        z-index: 60;
+        transform-origin: 50% 50%;
+    }
+}
+
+@include keyframes(show-tree) {
+    0% {
+        transform: translateY(250px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
